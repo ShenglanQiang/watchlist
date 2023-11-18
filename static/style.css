@@ -27,6 +27,23 @@ footer {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
+/* 演员列表 */
+.actor-list {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.actor-list li {
+    padding: 12px 24px;
+    border-bottom: 1px solid #ddd;
+}
+
+.actor-list li:last-child {
+border-bottom:none;
+}
+
 .movie-list li {
     padding: 12px 24px;
     border-bottom: 1px solid #ddd;
@@ -37,6 +54,10 @@ border-bottom:none;
 }
 
 .movie-list li:hover {
+background-color: #f8f9fa;
+}
+
+.actor-list li:hover {
 background-color: #f8f9fa;
 }
 
@@ -92,6 +113,7 @@ input[type=submit] {
 
 input[type=text] {
     border: 1px solid #ddd;
+    width: 45px;
 }
 
 input[name=year] {
