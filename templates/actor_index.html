@@ -8,6 +8,9 @@
         <span class="float-right">
         {% if current_user.is_authenticated %}
             <a class="btn" href="{{ url_for('edit2', actor_id=actor.actor_id) }}">Edit</a>
+            <form	class="inline-form"	method="post"	action="{{	url_for('delete2',	actor_id=actor.actor_id)	}}">
+                <input	class="btn"	type="submit"	name="delete"	value="Delete"	onclick="return	confirm('Are you sure?')">
+            </form>
         {% endif %}
             <a class="imdb" href="https://www.imdb.com/find?q={{actor.name }}" target="_blank" title="Find this actor on IMDb">IMDb</a>
         </span>

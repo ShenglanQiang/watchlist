@@ -360,3 +360,12 @@ def edit2(actor_id):
         return redirect(url_for('actor_index')) # 重定向回主页
 
     return render_template('edit2.html', actor=actor) # 传入被编辑的电影记录
+
+@app.route('/actor_index/actor/delete2/<int:actor_id>', methods=['POST'])
+@login_required # 登录保护
+def delete2(actor_id):
+    actor = Actor.query.get_or_404(actor_id)
+    db.session.delete(actor)
+    db.session.commit()
+    flash('Item deleted.')
+    return redirect(url_for('actor_index'))
