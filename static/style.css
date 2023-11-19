@@ -152,3 +152,47 @@ input[name=year] {
 .inline-form {
     display: inline;
 }
+
+form{
+    text-align: center;
+}
+			
+form .text {
+    margin-top: 20px;
+    display: inline-block;
+    border: 0;
+    width: 260px;
+    height: 35px;
+    font-size: 14px;
+    outline: none;
+    border: 2px solid #339900;
+}
+			
+form .search {
+    margin-top: 20px;				
+    width: 90px;
+    height: 40px;
+    border: 2px solid #339900;
+    outline: none;
+    cursor: pointer;
+    width: 90px;
+    height: 38px;
+    border: 2px solid #01af63;
+    outline: none;
+    cursor: pointer;
+    /*   cursor: pointer;   鼠标悬停或点击时button时鼠标变成其他图标  */	    text-align: center;
+    background-color: #01af63;
+    color: #FFFFFF;
+}
+
+.goback{
+    margin-bottom: 20px;
+    width: 110px;
+    height:32px;
+    outline: none;
+    text-align: center;
+    background-color: #01af63;
+    cursor: pointer;
+    border: 2px solid #01af63;
+    color: #FFFFFF;
+}

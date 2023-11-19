@@ -369,3 +369,21 @@ def delete2(actor_id):
     db.session.commit()
     flash('Item deleted.')
     return redirect(url_for('actor_index'))
+
+@app.route('/search', methods=['GET'])
+@login_required # 登录保护
+def search():
+    search_query = request.args.get('word') # 获取搜索标题
+    if search_query:
+        movies = Movie.query.filter(Movie.title.contains(search_query)).all() # 使用模糊匹配查询数据库
+        return render_template('search.html', movies=movies, search_query=search_query)
+
+@app.route('/actor_index/search2', methods=['GET'])
+@login_required # 登录保护
+def search2():
+    search_query2 = request.args.get('word2') # 获取搜索人名
+    if search_query2:
+        actors = Actor.query.filter(Actor.name.contains(search_query2)).all() # 使用模糊匹配查询数据库
+        return render_template('search2.html', actors=actors, search_query2=search_query2)
+
+

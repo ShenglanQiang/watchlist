@@ -1,10 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form target="_blank" method="get" action="{{ url_for('search') }}">
-	<input type="text" placeholder="请输入电影名关键词" name="word" class="text" />
-	<input type="submit" value="搜索" class="search">
-</form>
+<h3>Search Results for {{search_query}}</h3>
 <p>{{ movies|length }} Titles</p>
 <ul class="movie-list">
     {% for movie in movies %}
@@ -22,17 +19,6 @@
     {% endfor %}
 </ul>
 <p>{{ movies|length }} Titles</p>
-<!-- 在模板中可以直接使用 current_user 变量 -->
-{% if current_user.is_authenticated %}
-<form method="post">
-    ID <input type="text" name="id" autocomplete="off" required>
-    Name <input type="text" name="title" autocomplete="off" required>
-    Date <input type="text" name="date" autocomplete="off" required>
-    Country <input type="text" name="country" autocomplete="off" required>
-    Type <input type="text" name="type" autocomplete="off" required>
-    Year <input type="text" name="year" autocomplete="off" required>
-    <input class="btn" type="submit" name="submit" value="Add">
-</form>
-{% endif %}
+<button class="goback" onclick="window.location.href = '{{ url_for('index') }}'">Back to Movies</button>
 <img alt="Dog" class="dog" src="{{ url_for('static', filename='images/dog.gif') }}" title="to~to~ro~">
 {% endblock %}
