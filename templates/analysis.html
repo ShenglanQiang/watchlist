@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Analysis for Box</h3>
+<p>By Type of Movies</p>
+<ul class="actor-list">
+    {% for ana1 in ana1s %}
+    <li>{{ ana1.type }} - {{ ana1.avg }}</li>
+    {% endfor %}
+</ul>
+<p>By Country of Movies</p>
+<ul class="actor-list">
+    {% for ana2 in ana2s %}
+    <li>{{ ana2.country }} - {{ ana2.avg1 }}</li>
+    {% endfor %}
+</ul>
+<p>By Year of Movies</p>
+<ul class="actor-list">
+    {% for ana3 in ana3s %}
+    <li>{{ ana3.year }} - {{ ana3.avg2 }}</li>
+    {% endfor %}
+</ul>
+<p>3 Parts</p>
+<button class="goback" onclick="window.location.href = '{{ url_for('index') }}'">Back to Movies</button>
+<img alt="Dog" class="dog" src="{{ url_for('static', filename='images/dog.gif') }}" title="to~to~ro~">
+{% endblock %}

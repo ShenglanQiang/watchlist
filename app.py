@@ -34,6 +34,16 @@ class Actor(db.Model): # 表名将会是 actor
     gender = db.Column(db.String(2)) # 演员性别
     country = db.Column(db.String(20)) # 演员国家
 
+class Movie_actor_relation(db.Model): # 表名将会是 movie_actor_relation
+    id = db.Column(db.Integer, primary_key=True) # 主键
+    movie_id = db.Column(db.String(4)) # 电影id
+    actor_id = db.Column(db.String(4)) # 电影上映日期
+    type = db.Column(db.String(10)) # 主演/导演
+
+class Move_box(db.Model): # 表名将会是 box
+    movie_id = db.Column(db.Integer, primary_key=True) # 主键
+    box = db.Column(db.Float) # 电影票房
+
 import click
 
 @app.cli.command() # 注册为命令
@@ -135,8 +145,114 @@ def forge2():
     user = User(name=name)
     db.session.add(user)
     for a in actors:
-        actor = Actor(actor_id=a['actor_id'], name=a['name'], gender=a['gender'], country=a['country'])
+        actor = Actor(actor_id=a['actor_id'], name=a['name'], gender=a['gender'], acountry=a['country'])
         db.session.add(actor)
+
+    db.session.commit()
+    click.echo('Done.')
+
+@app.cli.command()
+def forge3():
+    """Generate fake data."""
+    db.create_all()
+    # 全局的两个变量移动到这个函数内
+    name = 'ShenglanQiang'
+    relations = [
+        {'id':'1','movie_id':'1001', 'actor_id':'2001','type':'主演'},
+        {'id':'2','movie_id':'1001','actor_id':'2001','type':'导演'},
+        {'id':'3','movie_id':'1002','actor_id':'2002','type':'导演'},
+        {'id':'4','movie_id':'1003','actor_id':'2003','type':'主演'},
+        {'id':'6','movie_id':'1003','actor_id':'2004','type':'导演'},
+        {'id':'7','movie_id':'1004','actor_id':'2005','type':'导演'},
+        {'id':'8','movie_id':'1004','actor_id':'2006','type':'主演'},
+        {'id':'9','movie_id':'1004','actor_id':'2007','type':'主演'},
+        {'id':'10','movie_id':'1005','actor_id':'2008','type':'导演'},
+        {'id':'11','movie_id':'1005','actor_id':'2009','type':'主演'},
+        {'id':'12','movie_id':'1005','actor_id':'2010','type':'主演'},
+        {'id':'13','movie_id':'1006','actor_id':'2011','type':'导演'},
+        {'id':'14','movie_id':'1006','actor_id':'2012','type':'主演'},
+        {'id':'15','movie_id':'1006','actor_id':'2013','type':'主演'},
+        {'id':'16','movie_id':'1007','actor_id':'2014','type':'导演'},
+        {'id':'17','movie_id':'1007','actor_id':'2015','type':'主演'},
+        {'id':'18','movie_id':'1008','actor_id':'2016','type':'导演'},
+        {'id':'19','movie_id':'1008','actor_id':'2017','type':'主演'},
+        {'id':'20', 'movie_id':'1009', 'actor_id':'2018', 'type':'导演'},
+        {'id':'21', 'movie_id':'1009', 'actor_id':'2019', 'type':'主演'},
+        {'id':'22', 'movie_id':'1009', 'actor_id':'2020', 'type':'主演'},
+        {'id':'23', 'movie_id':'1010', 'actor_id':'2021', 'type':'导演'},
+        {'id':'24', 'movie_id':'1010', 'actor_id':'2022', 'type':'主演'},
+        {'id':'25', 'movie_id':'1011', 'actor_id':'2023', 'type':'导演'},
+        {'id':'26', 'movie_id':'1011', 'actor_id':'2006', 'type':'主演'},
+        {'id':'27', 'movie_id':'1011', 'actor_id':'2024', 'type':'主演'},
+        {'id':'28', 'movie_id':'1012', 'actor_id':'2025', 'type':'导演'},
+        {'id':'29', 'movie_id':'1012', 'actor_id':'2026', 'type':'主演'},
+        {'id':'30', 'movie_id':'1012', 'actor_id':'2027', 'type':'主演'},
+        {'id':'31', 'movie_id':'1012', 'actor_id':'2028', 'type':'主演'},
+        {'id':'32', 'movie_id':'1013', 'actor_id':'2029', 'type':'导演'},
+        {'id':'33', 'movie_id':'1013', 'actor_id':'2030', 'type':'主演'},
+        {'id':'34', 'movie_id':'1013', 'actor_id':'2009', 'type':'主演'},
+        {'id':'35', 'movie_id':'1013', 'actor_id':'2031', 'type':'主演'},
+        {'id':'36', 'movie_id':'1015', 'actor_id':'2032', 'type':'导演'},
+        {'id':'37', 'movie_id':'1015', 'actor_id':'2015', 'type':'导演'},
+        {'id':'38', 'movie_id':'1015', 'actor_id':'2011', 'type':'导演'},
+        {'id':'39', 'movie_id':'1015', 'actor_id':'2015', 'type':'主演'},
+        {'id':'40', 'movie_id':'1015', 'actor_id':'2033', 'type':'主演'},
+        {'id':'41', 'movie_id':'1015', 'actor_id':'2034', 'type':'主演'},
+        {'id':'42', 'movie_id':'1016', 'actor_id':'2035', 'type':'导演'},
+        {'id':'43', 'movie_id':'1016', 'actor_id':'2035', 'type':'主演'},
+        {'id':'44', 'movie_id':'1016', 'actor_id':'2036', 'type':'主演'},
+        {'id':'45', 'movie_id':'1016', 'actor_id':'2022', 'type':'主演'},
+        {'id':'46', 'movie_id':'1017', 'actor_id':'2037', 'type':'导演'},
+        {'id':'47', 'movie_id':'1017', 'actor_id':'2038', 'type':'导演'},
+        {'id':'48', 'movie_id':'1017', 'actor_id':'2008', 'type':'导演'},
+        {'id':'49', 'movie_id':'1017', 'actor_id':'2001', 'type':'主演'},
+        {'id':'50', 'movie_id':'1017', 'actor_id':'2039', 'type':'主演'},
+        {'id':'51', 'movie_id':'1018', 'actor_id':'2040', 'type':'导演'},
+        {'id':'52', 'movie_id':'1018', 'actor_id':'2019', 'type':'主演'},
+        {'id':'53', 'movie_id':'1018', 'actor_id':'2041', 'type':'主演'},
+    ]
+
+    user = User(name=name)
+    db.session.add(user)
+    for r in relations:
+        movie_actor_relation = Movie_actor_relation(id=r['id'], movie_id=r['movie_id'], actor_id=r['actor_id'], type=r['type'])
+        db.session.add(movie_actor_relation)
+
+    db.session.commit()
+    click.echo('Done.')
+
+import click
+@app.cli.command()
+def forge4():
+    db.create_all()
+    # 全局的两个变量移动到这个函数内
+    name = 'ShenglanQiang'
+    move_boxes = [
+        {'movie_id': '1001', 'box': 56.84},
+        {'movie_id': '1002', 'box': 50.15},
+        {'movie_id': '1003', 'box': 46.86},
+        {'movie_id': '1004', 'box': 42.5},
+        {'movie_id': '1005', 'box': 36.5},
+        {'movie_id': '1006', 'box': 33.97},
+        {'movie_id': '1007', 'box': 31},
+        {'movie_id': '1008', 'box': 29.12},
+        {'movie_id': '1009', 'box': 26.7},
+        {'movie_id': '1010', 'box': 25.47},
+        {'movie_id': '1011', 'box': 23.9},
+        {'movie_id': '1012', 'box': 22.37},
+        {'movie_id': '1013', 'box': 30.10},
+        {'movie_id': '1014', 'box': 16.02},
+        {'movie_id': '1015', 'box': 28.29},
+        {'movie_id': '1016', 'box': 54.13},
+        {'movie_id': '1017', 'box': 53.48},
+        {'movie_id': '1018', 'box': 13.92},
+    ]
+
+    user = User(name=name)
+    db.session.add(user)
+    for b in move_boxes:
+        move_box = Move_box(movie_id=b['movie_id'], box=b['box'])
+        db.session.add(move_box)
 
     db.session.commit()
     click.echo('Done.')
@@ -370,12 +486,13 @@ def delete2(actor_id):
     flash('Item deleted.')
     return redirect(url_for('actor_index'))
 
+from sqlalchemy import join
 @app.route('/search', methods=['GET'])
 @login_required # 登录保护
 def search():
-    search_query = request.args.get('word') # 获取搜索标题
+    search_query = request.args.get('word')  # 获取搜索标题
     if search_query:
-        movies = Movie.query.filter(Movie.title.contains(search_query)).all() # 使用模糊匹配查询数据库
+        movies = db.session.query(Movie.id, Movie.title, Movie.type, Movie.year, Move_box.movie_id, Move_box.box).join(Move_box, Movie.id == Move_box.movie_id).filter(Movie.title.contains(search_query)).all()  # 使用模糊匹配查询数据库
         return render_template('search.html', movies=movies, search_query=search_query)
 
 @app.route('/actor_index/search2', methods=['GET'])
@@ -386,4 +503,11 @@ def search2():
         actors = Actor.query.filter(Actor.name.contains(search_query2)).all() # 使用模糊匹配查询数据库
         return render_template('search2.html', actors=actors, search_query2=search_query2)
 
-
+from sqlalchemy import func
+@app.route('/analysis', methods=['GET'])
+@login_required # 登录保护
+def analysis():
+    ana1s = db.session.query(Movie.type, func.round(func.avg(Move_box.box),).label('avg')).join(Move_box, Movie.id == Move_box.movie_id).group_by(Movie.type).all()
+    ana2s = db.session.query(Movie.country, func.round(func.avg(Move_box.box), ).label('avg1')).join(Move_box, Movie.id == Move_box.movie_id).group_by(Movie.country).all()
+    ana3s = db.session.query(Movie.year, func.round(func.avg(Move_box.box), ).label('avg2')).join(Move_box, Movie.id == Move_box.movie_id).group_by(Movie.year).all()
+    return render_template('analysis.html', ana1s = ana1s, ana2s = ana2s, ana3s = ana3s)
