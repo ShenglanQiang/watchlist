@@ -63,7 +63,7 @@ def forge():
     # 全局的两个变量移动到这个函数内
     name = 'ShenglanQiang'
     movies = [
-        {'id': '1001', 'title': '战狼2', 'date': '2017/7/27', 'country': '中国', 'type': '战争', 'year': '1988'},
+        {'id': '1001', 'title': '战狼2', 'date': '2017/7/27', 'country': '中国', 'type': '战争', 'year': '2017'},
         {'id': '1002', 'title': '哪吒之魔童降世', 'date': '2019/7/26', 'country': '中国', 'type': '动画', 'year': '2019'},
         {'id': '1003', 'title': '流浪地球', 'date': '2019/2/5', 'country': '中国', 'type': '科幻', 'year': '2019'},
         {'id': '1004', 'title': '复仇者联盟4', 'date': '2019/4/24', 'country': '美国', 'type': '科幻', 'year': '2019'},
@@ -522,7 +522,7 @@ def analysis():
     plt.ylabel('Box Office (Average)')
     plt.title('Average Box Office by Type')
     plt.xticks(rotation=45)
-    # 设置字体为 'Microsoft YaHei'
+
     plt.rcParams['font.sans-serif'] = ['SimHei','Songti SC','STFangsong'] # 正常显示中文
     plt.rcParams['axes.unicode_minus'] = False # 正常显示负号
     # 保存图像文件
@@ -530,4 +530,43 @@ def analysis():
     #清除图形
     plt.clf()
     plt.close('all')
+
+    # 从 ana2s 中提取类型和平均票房数据
+    countries = [item[0] for item in ana2s]
+    avg_box2 = [item[1] for item in ana2s]
+
+    # 绘制柱形图
+    plt.bar(countries, avg_box2, color='#8CC629')
+    plt.xlabel('Country')
+    plt.ylabel('Box Office (Average)')
+    plt.title('Average Box Office by Country')
+    plt.xticks(rotation=45)
+
+    plt.rcParams['font.sans-serif'] = ['SimHei', 'Songti SC', 'STFangsong']  # 正常显示中文
+    plt.rcParams['axes.unicode_minus'] = False  # 正常显示负号
+    # 保存图像文件
+    plt.savefig('static/images/country_output.png')
+    # 清除图形
+    plt.clf()
+    plt.close('all')
+
+    # 从 ana3s 中提取类型和平均票房数据
+    years = [item[0] for item in ana3s]
+    avg_box3 = [item[1] for item in ana3s]
+
+    # 绘制柱形图
+    plt.plot(years, avg_box3, color='#8CC629')
+    plt.xlabel('Year')
+    plt.ylabel('Box Office (Average)')
+    plt.title('Average Box Office by Year')
+    plt.xticks(rotation=45)
+
+    plt.rcParams['font.sans-serif'] = ['SimHei', 'Songti SC', 'STFangsong']  # 正常显示中文
+    plt.rcParams['axes.unicode_minus'] = False  # 正常显示负号
+    # 保存图像文件
+    plt.savefig('static/images/year_output.png')
+    # 清除图形
+    plt.clf()
+    plt.close('all')
+
     return render_template('analysis.html', ana1s = ana1s, ana2s = ana2s, ana3s = ana3s)
