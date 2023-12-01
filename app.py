@@ -504,10 +504,30 @@ def search2():
         return render_template('search2.html', actors=actors, search_query2=search_query2)
 
 from sqlalchemy import func
+import matplotlib.pyplot as plt
 @app.route('/analysis', methods=['GET'])
 @login_required # 登录保护
 def analysis():
     ana1s = db.session.query(Movie.type, func.round(func.avg(Move_box.box),).label('avg')).join(Move_box, Movie.id == Move_box.movie_id).group_by(Movie.type).all()
     ana2s = db.session.query(Movie.country, func.round(func.avg(Move_box.box), ).label('avg1')).join(Move_box, Movie.id == Move_box.movie_id).group_by(Movie.country).all()
     ana3s = db.session.query(Movie.year, func.round(func.avg(Move_box.box), ).label('avg2')).join(Move_box, Movie.id == Move_box.movie_id).group_by(Movie.year).all()
+
+    # 从 ana1s 中提取类型和平均票房数据
+    types = [item[0] for item in ana1s]
+    avg_box = [item[1] for item in ana1s]
+
+    # 绘制柱形图
+    plt.bar(types, avg_box, color='#8CC629')
+    plt.xlabel('Type')
+    plt.ylabel('Box Office (Average)')
+    plt.title('Average Box Office by Type')
+    plt.xticks(rotation=45)
+    # 设置字体为 'Microsoft YaHei'
+    plt.rcParams['font.sans-serif'] = ['SimHei','Songti SC','STFangsong'] # 正常显示中文
+    plt.rcParams['axes.unicode_minus'] = False # 正常显示负号
+    # 保存图像文件
+    plt.savefig('static/images/type_output.png')
+    #清除图形
+    plt.clf()
+    plt.close('all')
     return render_template('analysis.html', ana1s = ana1s, ana2s = ana2s, ana3s = ana3s)

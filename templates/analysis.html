@@ -8,6 +8,7 @@
     <li>{{ ana1.type }} - {{ ana1.avg }}</li>
     {% endfor %}
 </ul>
+    <img src="{{ url_for('static', filename='images/type_output.png') }}" class = "plot" alt="Bar Chart">
 <p>By Country of Movies</p>
 <ul class="actor-list">
     {% for ana2 in ana2s %}

@@ -196,3 +196,11 @@ form .search {
     border: 2px solid #01af63;
     color: #FFFFFF;
 }
+
+.plot{
+    width:400px;
+    height: 300px;
+    margin-top:5px;
+    margin-bottom:5px;
+    text-align: center;
+}
