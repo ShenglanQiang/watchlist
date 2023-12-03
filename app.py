@@ -570,3 +570,53 @@ def analysis():
     plt.close('all')
 
     return render_template('analysis.html', ana1s = ana1s, ana2s = ana2s, ana3s = ana3s)
+
+import lightgbm as lgb
+import numpy as np
+# 加载保存的模型
+model1 = lgb.Booster(model_file='C:/Users/Qiang/watchlist/model1.txt')
+
+@app.route('/predict', methods=['GET'])
+@login_required
+def predict():
+    return render_template('predict.html')
+
+@login_required
+@app.route('/result', methods=['GET'])
+def result():
+        # 获取表单数据
+        runtime = request.args.get('runtime')
+        num_genres = request.args.get('num_genres')
+        genre_Drama = request.args.get('genre_Drama')
+        genre_Comedy = request.args.get('genre_Comedy')
+        genre_Thriller = request.args.get('genre_Thriller')
+        genre_Action = request.args.get('genre_Action')
+        genre_Romance = request.args.get('genre_Romance')
+        genre_Crime = request.args.get('genre_Crime')
+        genre_Adventure = request.args.get('genre_Adventure')
+        genre_Horror = request.args.get('genre_Horror')
+        genre_Science_Fiction = request.args.get('genre_Science_Fiction')
+        num_languages = request.args.get('num_languages')
+        language_English = request.args.get('language_English')
+        language_French = request.args.get('language_French')
+        gender0 = request.args.get('gender0')
+        gender1 = request.args.get('gender1')
+        log_budget = request.args.get('log_budget')
+        homepage = request.args.get('homepage')
+        release_date_year = request.args.get('release_date_year')
+        quarter = request.args.get('quarter')
+        words_title = request.args.get('words_title')
+
+        # 将表单数据转换为一维数组
+        input_data = np.array([
+            runtime, num_genres, genre_Drama, genre_Comedy, genre_Thriller,
+            genre_Action, genre_Romance, genre_Crime, genre_Adventure, genre_Horror,
+            genre_Science_Fiction, num_languages, language_English, language_French,
+            gender0, gender1, log_budget, homepage, release_date_year, quarter, words_title
+        ])
+        # 将一维数组转换为二维数组（-1 表示自动推断数组长度）
+        input_array = input_data.reshape(-1, 21)
+        # 使用模型进行预测
+        predictions = model1.predict(input_array)
+        # 将预测结果传递给模板，用于在网页上显示
+        return render_template('result.html', predictions=predictions)

@@ -26,6 +26,7 @@
                 <li><a href="{{ url_for('settings') }}">Settings</a></li>
                 <li><a href="{{ url_for('logout') }}">Logout</a></li>
                 <li><a href="{{ url_for('analysis') }}">Analysis</a></li>
+                <li><a href="{{ url_for('predict') }}">Predict</a></li>
             {% else %}
                 <li><a href="{{ url_for('login') }}">Login</a></li>
             {% endif %}

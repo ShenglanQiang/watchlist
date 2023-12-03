@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Predict for Box</h3>
+<h1>Result</h1>
+<p>Predicted Value: {{ predictions }}</p>
+<br>
+<button class="goback" onclick="window.location.href = '{{ url_for('predict') }}'">Back to Predict</button>
+<img alt="Dog" class="dog" src="{{ url_for('static', filename='images/dog.gif') }}" title="to~to~ro~">
+{% endblock %}

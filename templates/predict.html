@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Predict for Box</h3>
+<p>Please add your information in these blocks</p>
+{% if current_user.is_authenticated %}
+<form target="_blank" method="get" action="{{ url_for('result') }}">
+    时长 <input type="text" name="runtime" autocomplete="off" required>
+    类型数 <input type="text" name="num_genres" autocomplete="off" required>
+    戏剧 <input type="text" name="genre_Drama" autocomplete="off" required>
+    喜剧 <input type="text" name="genre_Comedy" autocomplete="off" required>
+    惊悚 <input type="text" name="genre_Thriller" autocomplete="off" required>
+    动作 <input type="text" name="genre_Action" autocomplete="off" required>
+    爱情 <input type="text" name="genre_Romance" autocomplete="off" required>
+    犯罪 <input type="text" name="genre_Crime" autocomplete="off" required>
+    冒险 <input type="text" name="genre_Adventure" autocomplete="off" required>
+    恐怖 <input type="text" name="genre_Horror" autocomplete="off" required>
+    纪录 <input type="text" name="genre_Science_Fiction" autocomplete="off" required>
+    语言数 <input type="text" name="num_languages" autocomplete="off" required>
+    英语 <input type="text" name="language_English" autocomplete="off" required>
+    法语 <input type="text" name="language_French" autocomplete="off" required>
+    男主演数 <input type="text" name="gender0" autocomplete="off" required>
+    女主演数 <input type="text" name="gender1" autocomplete="off" required>
+    预算 <input type="text" name="log_budget" autocomplete="off" required>
+    是否有主页 <input type="text" name="homepage" autocomplete="off" required>
+    发布年份 <input type="text" name="release_date_year" autocomplete="off" required>
+    发布季度 <input type="text" name="quarter" autocomplete="off" required>
+    标题字数 <input type="text" name="words_title" autocomplete="off" required>
+    <input class="btn" type="submit" value="提交">
+</form>
+{% endif %}
+<p>Make sure your information is all right</p>
+<button class="goback" onclick="window.location.href = '{{ url_for('index') }}'">Back to Movies</button>
+<img alt="Dog" class="dog" src="{{ url_for('static', filename='images/dog.gif') }}" title="to~to~ro~">
+{% endblock %}
