@@ -156,8 +156,13 @@ input[name=year] {
 form{
     text-align: center;
 }
-			
+
+form .container {
+    text-align: left;
+}
+
 form .text {
+    text-align: center;
     margin-top: 20px;
     display: inline-block;
     border: 0;
@@ -169,10 +174,10 @@ form .text {
 }
 			
 form .search {
-    margin-top: 20px;				
+    margin-top: 20px;	
     width: 90px;
     height: 40px;
-    border: 2px solid #339900;
+    border: 2px solid #i339900;
     outline: none;
     cursor: pointer;
     width: 90px;
@@ -183,6 +188,17 @@ form .search {
     /*   cursor: pointer;   鼠标悬停或点击时button时鼠标变成其他图标  */	    text-align: center;
     background-color: #01af63;
     color: #FFFFFF;
+}
+
+
+form .info {
+    margin-top: 5px;
+    border: 0;
+    width: 150px;
+    height: 20px;
+    font-size: 10px;
+    outline: none;
+    border: 1px solid #C0C0C0;
 }
 
 .goback{
@@ -204,3 +220,19 @@ form .search {
     margin-bottom:5px;
     text-align: center;
 }
+
+.up {
+    width: 60px;
+    height: 32px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    font-size: 14px;
+    padding: 4px 4px;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #C0C0C0;
+    color: white;
+    border: 1px solid #C0C0C0;
+    border-radius: 5px;
+}
+
